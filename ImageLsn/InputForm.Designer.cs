@@ -36,11 +36,7 @@
             System.Windows.Forms.Label passPhraseLabel;
             System.Windows.Forms.Label passwordLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.users = new ImageLsn.Users();
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usersTableAdapter = new ImageLsn.UsersTableAdapters.UsersTableAdapter();
-            this.tableAdapterManager = new ImageLsn.UsersTableAdapters.TableAdapterManager();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.usersBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.posToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.firstToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -68,6 +64,9 @@
             this.passPhraseTextBox = new System.Windows.Forms.TextBox();
             this.passTermTextBox = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.manualImageButton = new System.Windows.Forms.Button();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.users = new ImageLsn.Users();
             this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,19 +74,21 @@
             this.PassPhrase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PassTerm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.usersTableAdapter = new ImageLsn.UsersTableAdapters.UsersTableAdapter();
+            this.tableAdapterManager = new ImageLsn.UsersTableAdapters.TableAdapterManager();
             userIDLabel = new System.Windows.Forms.Label();
             userNameLabel = new System.Windows.Forms.Label();
             fullNameLabel = new System.Windows.Forms.Label();
             passTermLabel = new System.Windows.Forms.Label();
             passPhraseLabel = new System.Windows.Forms.Label();
             passwordLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.users)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingNavigator)).BeginInit();
             this.usersBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).BeginInit();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.users)).BeginInit();
             this.SuspendLayout();
             // 
             // userIDLabel
@@ -143,26 +144,6 @@
             passwordLabel.Size = new System.Drawing.Size(56, 13);
             passwordLabel.TabIndex = 6;
             passwordLabel.Text = "Password:";
-            // 
-            // users
-            // 
-            this.users.DataSetName = "Users";
-            this.users.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // usersBindingSource
-            // 
-            this.usersBindingSource.DataMember = "Users";
-            this.usersBindingSource.DataSource = this.users;
-            // 
-            // usersTableAdapter
-            // 
-            this.usersTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.UpdateOrder = ImageLsn.UsersTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UsersTableAdapter = this.usersTableAdapter;
             // 
             // usersBindingNavigator
             // 
@@ -232,6 +213,7 @@
             // 
             this.countToolStripTextBox.AccessibleName = "Position";
             this.countToolStripTextBox.AutoSize = false;
+            this.countToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.countToolStripTextBox.Name = "countToolStripTextBox";
             this.countToolStripTextBox.Size = new System.Drawing.Size(50, 23);
             this.countToolStripTextBox.Text = "0";
@@ -345,14 +327,15 @@
             this.usersDataGridView.Name = "usersDataGridView";
             this.usersDataGridView.ReadOnly = true;
             this.usersDataGridView.RowHeadersWidth = 21;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.usersDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.usersDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.usersDataGridView.RowTemplate.Height = 55;
             this.usersDataGridView.Size = new System.Drawing.Size(776, 220);
             this.usersDataGridView.TabIndex = 1;
             // 
             // groupBox
             // 
+            this.groupBox.Controls.Add(this.manualImageButton);
             this.groupBox.Controls.Add(this.uploadButton);
             this.groupBox.Controls.Add(this.userPictureBox);
             this.groupBox.Controls.Add(userIDLabel);
@@ -376,9 +359,9 @@
             // 
             // uploadButton
             // 
-            this.uploadButton.Location = new System.Drawing.Point(461, 188);
+            this.uploadButton.Location = new System.Drawing.Point(461, 185);
             this.uploadButton.Name = "uploadButton";
-            this.uploadButton.Size = new System.Drawing.Size(288, 23);
+            this.uploadButton.Size = new System.Drawing.Size(132, 23);
             this.uploadButton.TabIndex = 13;
             this.uploadButton.Text = "Upload";
             this.uploadButton.UseVisualStyleBackColor = true;
@@ -444,6 +427,26 @@
             this.passTermTextBox.Size = new System.Drawing.Size(307, 20);
             this.passTermTextBox.TabIndex = 11;
             // 
+            // manualImageButton
+            // 
+            this.manualImageButton.Location = new System.Drawing.Point(611, 185);
+            this.manualImageButton.Name = "manualImageButton";
+            this.manualImageButton.Size = new System.Drawing.Size(138, 23);
+            this.manualImageButton.TabIndex = 14;
+            this.manualImageButton.Text = "Manual Load";
+            this.manualImageButton.UseVisualStyleBackColor = true;
+            this.manualImageButton.Click += new System.EventHandler(this.ManualImageButton_Click);
+            // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataMember = "Users";
+            this.usersBindingSource.DataSource = this.users;
+            // 
+            // users
+            // 
+            this.users.DataSetName = "Users";
+            this.users.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // UserID
             // 
             this.UserID.DataPropertyName = "UserID";
@@ -499,6 +502,16 @@
             this.UserImage.ReadOnly = true;
             this.UserImage.Width = 150;
             // 
+            // usersTableAdapter
+            // 
+            this.usersTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.UpdateOrder = ImageLsn.UsersTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UsersTableAdapter = this.usersTableAdapter;
+            // 
             // InputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,8 +525,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Input";
             this.Load += new System.EventHandler(this.InputForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.users)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingNavigator)).EndInit();
             this.usersBindingNavigator.ResumeLayout(false);
             this.usersBindingNavigator.PerformLayout();
@@ -521,6 +532,8 @@
             this.groupBox.ResumeLayout(false);
             this.groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.users)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -565,6 +578,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PassPhrase;
         private System.Windows.Forms.DataGridViewTextBoxColumn PassTerm;
         private System.Windows.Forms.DataGridViewImageColumn UserImage;
+        private System.Windows.Forms.Button manualImageButton;
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,6 +46,7 @@ namespace ImageLsn
                 this.cancelToolStripButton.Enabled = true;
                 this.exitToolStripButton.Enabled = false;
                 this.groupBox.Enabled = true;
+                this.uploadButton.Enabled = true; //Prevent random uploads
                 this.usersDataGridView.Enabled = false; //Prevent inadvertent changes
             }
             else //Not editing
@@ -57,6 +59,7 @@ namespace ImageLsn
                 this.cancelToolStripButton.Enabled = false;
                 this.exitToolStripButton.Enabled = true;
                 this.groupBox.Enabled = false;
+                this.uploadButton.Enabled = false;
                 this.usersDataGridView.Enabled = true;
             }
             BindingNav_Control(_status);
@@ -172,5 +175,28 @@ namespace ImageLsn
             catch (Exception ex) { MessageBox.Show(ex.Message); }
             ButtonController(false);
         }
+
+        private void ManualImageButton_Click(object sender, EventArgs e)
+        {
+            // Doesn't work well with the rest...
+            string _filename;
+            byte[] _image;
+
+            this.openFileDialog.Filter = "All Files|*.*";
+            if (this.openFileDialog.ShowDialog() == DialogResult.OK)
+                _filename = this.openFileDialog.FileName;
+            else
+                return;
+            _image = File.ReadAllBytes(_filename); //Read file to binary (other files?)
+            //This usage requires the adapter to have defined inser/update/delete methods
+            ////Allows any image even pdf
+            if (this.usersTableAdapter.Insert(this.userNameTextBox.Text, this.fullNameTextBox.Text, 
+                this.passwordTextBox.Text,this.passPhraseTextBox.Text, this.passTermTextBox.Text, _image) == 0)
+                MessageBox.Show("Failed to update records"); 
+            else
+                MessageBox.Show("Updated records");
+            ButtonController(false);
+        }
+        
     }
 }
